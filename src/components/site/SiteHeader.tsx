@@ -51,7 +51,7 @@ export const SiteHeader = () => {
       <div className="container flex items-center justify-between h-16 md:h-20">
         <a href="#top" className="flex items-center group">
           <img 
-            src="/logo.jpg" 
+            src="/logo.png" 
             alt="Grupo Sunny Energia" 
             className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
           />
