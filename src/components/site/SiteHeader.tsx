@@ -100,7 +100,7 @@ export const SiteHeader = () => {
               );
             })}
             <a
-              href="#top"
+              href="#simulador"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center px-5 py-3 rounded-full bg-primary text-primary-foreground font-semibold"
             >
