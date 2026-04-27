@@ -1,0 +1,243 @@
+@import "material-icons/iconfont/material-icons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Sunny Energia — dark premium with solar yellow accent */
+    --background: 0 0% 4%;              /* #0b0b0b */
+    --foreground: 0 0% 99%;             /* #fcfcfc */
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 99%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 99%;
+
+    --primary: 32 96% 51%;              /* #fb9b08 */
+    --primary-foreground: 0 0% 4%;
+    --primary-glow: 38 100% 60%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 99%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 32 96% 51%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 99%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 14%;
+    --ring: 32 96% 51%;
+
+    --radius: 1rem;
+
+    /* Custom tokens */
+    --gradient-hero: radial-gradient(ellipse at top, hsl(32 96% 51% / 0.18), transparent 60%),
+                     linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(32 96% 51%), hsl(38 100% 60%));
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.04), hsl(0 0% 100% / 0.01));
+
+    --shadow-glow: 0 20px 60px -20px hsl(32 96% 51% / 0.5);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
+    --shadow-elevated: 0 20px 50px -15px hsl(0 0% 0% / 0.8);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 99%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 99%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 99%;
+    --primary: 32 96% 51%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 99%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 32 96% 51%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 99%;
+    --border: 0 0% 16%;
+    --input: 0 0% 14%;
+    --ring: 32 96% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/60 rounded-2xl;
+    background-image: var(--gradient-glass);
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-300 hover:border-primary/40 hover:-translate-y-1;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card-hover:hover {
+    box-shadow: var(--shadow-elevated), 0 0 0 1px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl bg-input/60 border border-border text-foreground placeholder:text-muted-foreground/60
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all;
+  }
+
+  /* Input dentro do card amarelo do simulador */
+  .sim-input {
+    @apply w-full px-4 py-3 rounded-xl bg-black/25 border border-black/20 text-primary-foreground placeholder:text-primary-foreground/50
+           focus:outline-none focus:ring-2 focus:ring-black/30 focus:border-black/40 transition-all;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  /* ── Scroll Reveal ───────────────────────────────────── */
+  /* Aplique .reveal nos elementos; o JS adiciona .revealed */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Filhos com stagger automático */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms;   opacity: 1; transform: none; }
+  .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: none; }
+  .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: none; }
+  .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: none; }
+  .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: none; }
+  .reveal-stagger.revealed > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: none; }
+
+  /* ── Result cards stagger ──────────────────────────────── */
+  .result-stagger > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .result-stagger.revealed > *:nth-child(1) { transition-delay: 0ms;   opacity: 1; transform: none; }
+  .result-stagger.revealed > *:nth-child(2) { transition-delay: 80ms;  opacity: 1; transform: none; }
+  .result-stagger.revealed > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: none; }
+  .result-stagger.revealed > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: none; }
+  .result-stagger.revealed > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: none; }
+  .result-stagger.revealed > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: none; }
+
+  /* ── Pulse glow para cards de destaque ─────────────────── */
+  .animate-pulse-glow {
+    animation: pulse-glow 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+    50%       { box-shadow: 0 0 18px 4px hsl(var(--primary) / 0.35); }
+  }
+
+  /* ── Borda animada (rotating conic-gradient) ───────────── */
+  .animated-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--border-angle, 0deg),
+      transparent 0deg,
+      hsl(var(--primary)) 60deg,
+      hsl(var(--primary-glow)) 120deg,
+      transparent 180deg,
+      transparent 360deg
+    );
+    animation: border-spin 6s linear infinite;
+  }
+  .animated-border::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: hsl(var(--card) / 0.9);
+    z-index: -1;
+  }
+  @keyframes border-spin {
+    to { --border-angle: 360deg; }
+  }
+  @property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+}
